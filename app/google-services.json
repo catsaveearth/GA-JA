@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "936002109061",
+    "project_id": "seteam-c92d1",
+    "storage_bucket": "seteam-c92d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936002109061:android:1ee129c8242be24eb233ec",
+        "android_client_info": {
+          "package_name": "com.se.term"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "936002109061-pr3alchn84oiei9ga3va75vjd2ckm8is.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.se.term",
+            "certificate_hash": "cabdb94384cb782f1704df054647d175d187b68a"
+          }
+        },
+        {
+          "client_id": "936002109061-sq32vtvuuukg0ntn8i7qiqkp2m2s59d0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_6WtgeZOe39e4YW3Y7nWkhLd2Cx8z-iU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "936002109061-sq32vtvuuukg0ntn8i7qiqkp2m2s59d0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
