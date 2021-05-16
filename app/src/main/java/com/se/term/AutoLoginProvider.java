@@ -30,4 +30,21 @@ public class AutoLoginProvider {
         information[1] = string.substring(index+1);
         return information;
     }
+
+    public boolean AutoLoginRemover(){
+        if(file.exists()){
+            file.delete();
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+    public boolean AutoLoginChecker(){
+        if(file.exists()){
+            return true;
+        } else{
+            return false;
+        }
+    }
 }

@@ -25,15 +25,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText email;
     EditText pw;
-    TextView textview;
     TextView login;
     Button register;
-    Button writeLogin;
-    Button readLogin;
-    AutoLoginProvider autoLoginProvider = new AutoLoginProvider();
     private FirebaseAuth mAuth;
     public FirebaseUser user = null;
-    File loginFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,24 +70,6 @@ public class RegisterActivity extends AppCompatActivity {
                 finish(); //로그인창으로 돌아가기
             }
         });
-
-
-//        writeLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                autoLoginProvider.AutoLoginWriter(email.getText().toString(), pw.getText().toString());
-//                Toast.makeText(getApplicationContext(),loginFile.getPath(),Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        readLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String temp[] = autoLoginProvider.AutoLoginReader();
-//                email.setText(temp[0]);
-//                pw.setText(temp[1]);
-//            }
-//        });
     }
 
     private void registerUser(String email, String password){
@@ -111,7 +88,6 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
     @Override
     public void onStart() {
