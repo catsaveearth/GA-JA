@@ -1,20 +1,17 @@
 package com.se.term;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,13 +21,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.io.File;
 
-public class MainActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     EditText email;
     EditText pw;
     TextView textview;
-    Button login;
-    TextView register;
+    TextView login;
+    Button register;
     Button writeLogin;
     Button readLogin;
     AutoLoginProvider autoLoginProvider = new AutoLoginProvider();
@@ -41,48 +38,44 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
         ActionBar actionbar = getSupportActionBar();
         actionbar.hide();
 
-        ActivityCompat.requestPermissions(MainActivity.this,
+        ActivityCompat.requestPermissions(RegisterActivity.this,
                 new String[]{"android.permission.INTERNET"},0);
-        ActivityCompat.requestPermissions(MainActivity.this,
+        ActivityCompat.requestPermissions(RegisterActivity.this,
                 new String[]{"Manifest.permission.READ_EXTERNAL_STORAGE"}, MODE_PRIVATE);
-        ActivityCompat.requestPermissions(MainActivity.this,
+        ActivityCompat.requestPermissions(RegisterActivity.this,
                 new String[]{"Manifest.permission.WRITE_EXTERNAL_STORAGE"},MODE_PRIVATE);
 
         email = (EditText) findViewById(R.id.email);
         pw = (EditText) findViewById(R.id.pw);
-//        textview = (TextView) findViewById(R.id.userview);
-        login = (Button) findViewById(R.id.login);
-        register = (TextView) findViewById(R.id.register);
-//        writeLogin = (Button) findViewById(R.id.write);
-//        readLogin = (Button) findViewById(R.id.read);
-        mAuth = FirebaseAuth.getInstance();
-        loginFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/logininfo", "login.dat");
+        login = (TextView) findViewById(R.id.gotologin);
+        register = (Button) findViewById(R.id.register);
 
-        login.setOnClickListener(new View.OnClickListener() {
+        mAuth = FirebaseAuth.getInstance();
+
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!email.getText().toString().equals("")&&!pw.getText().toString().equals("")){
-                    loginUser(email.getText().toString(), pw.getText().toString());
-                    if(user!=null){
-                        textview.setText(user.getEmail().toString() + "로 로그인 됨.");
-                    }
+                    registerUser(email.getText().toString(), pw.getText().toString());
+                    finish(); //로그인창으로 돌아가기
                 } else{
                     Toast.makeText(getApplicationContext(),"이메일 혹은 비밀번호가 공백입니다.",Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));//액티비티 이동
+                finish(); //로그인창으로 돌아가기
             }
         });
+
 
 //        writeLogin.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -102,22 +95,23 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
-    private void loginUser(String email, String password){
-        mAuth.signInWithEmailAndPassword(email, password)
+    private void registerUser(String email, String password){
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             user = mAuth.getCurrentUser();
                             user.updateEmail(email);
-                            Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"회원가입 성공, 다시 로그인 해주세요.",Toast.LENGTH_SHORT).show();
                             //액티비티 이동
                         } else {
-                            Toast.makeText(getApplicationContext(),"로그인 실패",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"회원가입 실패",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
+
 
     @Override
     public void onStart() {

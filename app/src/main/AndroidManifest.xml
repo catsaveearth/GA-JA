@@ -22,6 +22,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".RegisterActivity"/>
+
         <service
             android:name=".MyFirebaseMessagingService">
             <intent-filter>

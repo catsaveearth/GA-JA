@@ -7,57 +7,139 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:id="@+id/email" />
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:id="@+id/pw" />
+        android:orientation="vertical"
+        android:layout_marginHorizontal="40dp"
+        android:paddingTop="150dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="GAJA"
+            android:textSize="50dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="같이 시키자"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="가치 시키자"
+            android:textSize="18dp" />
+
+
+
+        <TextView
+            android:id="@+id/login_text02"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="left"
+            android:text="Email" />
+
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="18dp"
+            android:hint="Enter Email"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColorHint="#888888"
+            android:backgroundTint="#888888"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/login_text03"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="left"
+            android:text="Password" />
+
+        <EditText
+            android:id="@+id/pw"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="18dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:backgroundTint="#888888"
+            android:hint="Enter Password"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
+
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="로그인"
-        android:layout_marginLeft="15sp"
-        android:layout_marginRight="15sp"
+        android:layout_marginTop="15dp"
         android:id="@+id/login" />
 
-    <Button
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="회원가입"
-        android:layout_marginLeft="15sp"
-        android:layout_marginRight="15sp"
-        android:id="@+id/register" />
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="temp"
-        android:textColor="#FFFF0000"
-        android:id="@+id/userview" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아직 회원이 아니신가요?"
+            android:textSize="10dp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="로그인파일생성"
-        android:layout_marginLeft="15sp"
-        android:layout_marginRight="15sp"
-        android:id="@+id/write" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회원가입"
+            android:textSize="10dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            android:id="@+id/register" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="로그인파일읽기"
-        android:layout_marginLeft="15sp"
-        android:layout_marginRight="15sp"
-        android:id="@+id/read" />
+
+    </LinearLayout>
+
+
+
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="temp"-->
+<!--        android:textColor="#FFFF0000"-->
+<!--        android:id="@+id/userview" />-->
+
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="로그인파일생성"-->
+<!--        android:layout_marginLeft="15sp"-->
+<!--        android:layout_marginRight="15sp"-->
+<!--        android:id="@+id/write" />-->
+
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="로그인파일읽기"-->
+<!--        android:layout_marginLeft="15sp"-->
+<!--        android:layout_marginRight="15sp"-->
+<!--        android:id="@+id/read" />-->
 
 </LinearLayout>
