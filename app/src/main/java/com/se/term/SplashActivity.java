@@ -29,10 +29,10 @@ public class SplashActivity extends AppCompatActivity {
         autoLoginProvider = new AutoLoginProvider();
         mAuth = FirebaseAuth.getInstance();
 
-        if(autoLoginProvider.AutoLoginChecker()){
+        if (autoLoginProvider.AutoLoginChecker()) {
             String[] emailPW = autoLoginProvider.AutoLoginReader();
             loginUser(emailPW[0], emailPW[1]);
-        } else{
+        } else {
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -40,22 +40,22 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(loginIntent);
                     finish();
                 }
-            }, 500);
+            }, 500); //500밀리초
         }
     }
 
-    private void loginUser(String email, String password){
+    private void loginUser(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                             Intent afterLoginIntent = new Intent(getApplicationContext(), AfterLoginTest.class);
                             startActivity(afterLoginIntent); //AfterLoginTest로 이동, 나중에 다른 액티비티로 바꿔주세요
                             finish();
                         } else {
-                            Toast.makeText(getApplicationContext(),"로그인 실패",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
                             startActivity(loginIntent);
                             finish();
                         }

@@ -39,11 +39,11 @@ public class RegisterActivity extends AppCompatActivity {
         actionbar.hide();
 
         ActivityCompat.requestPermissions(RegisterActivity.this,
-                new String[]{"android.permission.INTERNET"},0);
+                new String[]{"android.permission.INTERNET"}, 0);
         ActivityCompat.requestPermissions(RegisterActivity.this,
                 new String[]{"Manifest.permission.READ_EXTERNAL_STORAGE"}, MODE_PRIVATE);
         ActivityCompat.requestPermissions(RegisterActivity.this,
-                new String[]{"Manifest.permission.WRITE_EXTERNAL_STORAGE"},MODE_PRIVATE);
+                new String[]{"Manifest.permission.WRITE_EXTERNAL_STORAGE"}, MODE_PRIVATE);
 
         email = (EditText) findViewById(R.id.email);
         pw = (EditText) findViewById(R.id.pw);
@@ -55,11 +55,11 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!email.getText().toString().equals("")&&!pw.getText().toString().equals("")){
+                if (!email.getText().toString().equals("") && !pw.getText().toString().equals("")) {
                     registerUser(email.getText().toString(), pw.getText().toString());
                     finish(); //로그인창으로 돌아가기
-                } else{
-                    Toast.makeText(getApplicationContext(),"이메일 혹은 비밀번호가 공백입니다.",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "이메일 혹은 비밀번호가 공백입니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void registerUser(String email, String password){
+    private void registerUser(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -80,10 +80,10 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             user = mAuth.getCurrentUser();
                             user.updateEmail(email);
-                            Toast.makeText(getApplicationContext(),"회원가입 성공, 다시 로그인 해주세요.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "회원가입 성공, 다시 로그인 해주세요.", Toast.LENGTH_SHORT).show();
                             //액티비티 이동
                         } else {
-                            Toast.makeText(getApplicationContext(),"회원가입 실패",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -93,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
             //reload();
         }
     }

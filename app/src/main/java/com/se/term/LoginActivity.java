@@ -44,11 +44,11 @@ public class LoginActivity extends AppCompatActivity {
         actionbar.hide();
 
         ActivityCompat.requestPermissions(LoginActivity.this,
-                new String[]{"android.permission.INTERNET"},0);
+                new String[]{"android.permission.INTERNET"}, 0);
         ActivityCompat.requestPermissions(LoginActivity.this,
                 new String[]{"Manifest.permission.READ_EXTERNAL_STORAGE"}, MODE_PRIVATE);
         ActivityCompat.requestPermissions(LoginActivity.this,
-                new String[]{"Manifest.permission.WRITE_EXTERNAL_STORAGE"},MODE_PRIVATE);
+                new String[]{"Manifest.permission.WRITE_EXTERNAL_STORAGE"}, MODE_PRIVATE);
 
         email = (EditText) findViewById(R.id.email);
         pw = (EditText) findViewById(R.id.pw);
@@ -61,13 +61,13 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!email.getText().toString().equals("")&&!pw.getText().toString().equals("")){
+                if (!email.getText().toString().equals("") && !pw.getText().toString().equals("")) {
                     loginUser(email.getText().toString(), pw.getText().toString());
-                    if(user!=null){
+                    if (user != null) {
 
                     }
-                } else{
-                    Toast.makeText(getApplicationContext(),"이메일 혹은 비밀번호가 공백입니다.",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "이메일 혹은 비밀번호가 공백입니다.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void loginUser(String email, String password){
+    private void loginUser(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -88,11 +88,11 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             user = mAuth.getCurrentUser();
                             user.updateEmail(email);
-                            Toast.makeText(getApplicationContext(),"로그인 성공",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
 
-                            if(isAutoLogin.isChecked()){
+                            if (isAutoLogin.isChecked()) {
                                 autoLoginProvider.AutoLoginWriter(email, password); //자동로그인 설정
-                            } else{
+                            } else {
                                 autoLoginProvider.AutoLoginRemover();
                             }
 
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(afterLoginIntent); //AfterLoginTest로 이동, 나중에 다른 액티비티로 바꿔주세요
                             finish();
                         } else {
-                            Toast.makeText(getApplicationContext(),"로그인 실패",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null) {
             //reload();
         }
     }
